@@ -13,7 +13,8 @@ function [mu sigma2] = estimateGaussian(X)
 % You should return these values correctly
 mu = zeros(n, 1);
 sigma2 = zeros(n, 1);
-
+mu = mean(X,1)
+sigma2 = var(X-mu,1)
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the mean of the data and the variances
 %               In particular, mu(i) should contain the mean of
