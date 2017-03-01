@@ -16,6 +16,16 @@ Theta = reshape(params(num_movies*num_features+1:end), ...
 J = 0;
 X_grad = zeros(size(X));
 Theta_grad = zeros(size(Theta));
+for i = 1:num_movies
+  for j = 1:num_users
+    if R(i,j)
+      tmp = X(i,:)*Theta(j,:)' - Y(i,j);
+      J = J + tmp*tmp;
+    end
+  end
+end
+
+J = J/2;
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost function and gradient for collaborative
