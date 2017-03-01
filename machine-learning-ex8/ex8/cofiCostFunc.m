@@ -20,6 +20,9 @@ tmp = (X*Theta' - Y).*R
 tmp = tmp .* tmp
 J = sum(sum(tmp))/2;
 
+X_grad = ((X*Theta' - Y).*R)*Theta
+Theta_grad = ((X*Theta' - Y).*R)'*X
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost function and gradient for collaborative
 %               filtering. Concretely, you should first implement the cost
