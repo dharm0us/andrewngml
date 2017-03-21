@@ -24,9 +24,28 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 
 % Setup some useful variables
 m = size(X, 1);
-         
+% add extra column of 1's
+X = [ones(m, 1) X];
+% y is a vector of labels
+%convert to one_hot
+y_one_hot = zeros( size( y, 1 ), num_labels );
+
+% assuming class labels start from one
+for i = 1:num_labels
+    rows = y == i;
+    y_one_hot( rows, i ) = 1;
+end
+
 % You need to return the following variables correctly 
 J = 0;
+%feed forward
+a1 = sigmoid(X*Theta1');
+%need to add extra column of 1's at every layer
+a1 = [ones(size(a1,1), 1) a1];
+a2 = sigmoid(a1*Theta2');
+
+J = sum(sum((-log(a2).*y_one_hot) - (log(1 - a2).*(1-y_one_hot))))/m;
+
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
 
