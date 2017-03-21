@@ -46,6 +46,16 @@ a2 = sigmoid(a1*Theta2');
 
 J = sum(sum((-log(a2).*y_one_hot) - (log(1 - a2).*(1-y_one_hot))))/m;
 
+% remove bias which is the first column
+theta1_without_bias = Theta1(:,2:end);
+theta2_without_bias = Theta2(:,2:end);
+
+reg_cost_1 = sum(sum(theta1_without_bias .* theta1_without_bias));
+reg_cost_2 = sum(sum(theta2_without_bias .* theta2_without_bias));
+
+regularization_cost = lambda*(reg_cost_1 + reg_cost_2)/(2*m);
+
+J = J + regularization_cost;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
 
