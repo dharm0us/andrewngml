@@ -10,6 +10,10 @@ m = length(y); % number of training examples
 
 % You need to return the following variables correctly 
 J = 0;
+part0 = X * theta - y ;
+part1 = (sum(part0 .* part0))/(2*m);
+part2 = lambda * (sum(theta(2:end) .* theta(2:end)))/(2*m);
+J = part1 + part2;
 grad = zeros(size(theta));
 
 % ====================== YOUR CODE HERE ======================
