@@ -16,8 +16,7 @@ part2 = lambda * (sum(theta(2:end) .* theta(2:end)))/(2*m);
 J = part1 + part2;
 grad = zeros(size(theta));
 grad = lambda*theta/(m);
-theta
-grad(1) = 0
+grad(1) = 0;
 grad = grad + X'*part0/m;
 
 % ====================== YOUR CODE HERE ======================
